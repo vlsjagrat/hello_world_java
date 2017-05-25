@@ -4,10 +4,6 @@
   <property name="build.dir" value="build"/>
   <property name="dist.dir"  value="dist"/>
   <property name="junit.dir" value="/var/lib/jenkins/workspace/Helloworld/Reports"/>
-<!--
-  <property name="junit.dir" value="junit-results"/>
-  <property name="dest.dir" value="/var/lib/jenkins/workspace/Helloworld/Reports"/>
--->
   <property name="junit.jar" location="/usr/local/share/java/classes/junit.jar"/>
   <property name="test.class" value="TestHello"/>
 
@@ -20,9 +16,6 @@
     <mkdir dir="${build.dir}"/>
     <mkdir dir="${dist.dir}"/>
     <mkdir dir="${junit.dir}"/>
-<!--
-    <mkdir dir="${dest.dir}"/>
--->
   </target>
 
   <target name="build" depends="init" description="build everything under ${src.dir}" >
@@ -41,11 +34,6 @@
     <fail message="Tests failed: check test reports." if="test.failed" />
   </target>
 
-<!--
-  <touch>
-    <fileset dir="${dest.dir}"/>
-  </touch>
--->
  
   <target name="dist" depends="build" description="generate the distribution" >
     <jar jarfile="${dist.dir}/hello.jar" basedir="${build.dir}">
@@ -66,19 +54,6 @@
     <java jar="${dist.dir}/hello.jar" fork="true" />
   </target>
 
-  <target name="chmod_task2" depends="run">
-    <exec executable="chmod">
-      <arg value="755"/>
-      <arg value="${junit.dir}/hello.jar"/>
-    </exec>
-  </target>
-<!--
-  <target name="copy" depends="run"  >
-    <copy todir="${dest.dir}" overwrite="false" >
-      <fileset dir="${junit.dir}" excludes="**/*.xml"/>
-    </copy>
-  </target>
--->
   <target name="clean" description="clean up" >
     <delete dir="${build.dir}"/>
     <delete dir="${dist.dir}"/>
