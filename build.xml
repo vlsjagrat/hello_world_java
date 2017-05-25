@@ -20,7 +20,9 @@
     <mkdir dir="${build.dir}"/>
     <mkdir dir="${dist.dir}"/>
     <mkdir dir="${junit.dir}"/>
+<!--
     <mkdir dir="${dest.dir}"/>
+-->
   </target>
 
   <target name="build" depends="init" description="build everything under ${src.dir}" >
@@ -64,6 +66,12 @@
     <java jar="${dist.dir}/hello.jar" fork="true" />
   </target>
 
+  <target name="chmod_task2" depends="run">
+    <exec executable="chmod">
+      <arg value="755"/>
+      <arg value="${junit.dir}/hello.jar"/>
+    </exec>
+  </target>
 <!--
   <target name="copy" depends="run"  >
     <copy todir="${dest.dir}" overwrite="false" >
