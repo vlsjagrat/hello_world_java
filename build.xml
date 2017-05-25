@@ -3,11 +3,11 @@
   <property name="src.dir"   value="."/>
   <property name="build.dir" value="build"/>
   <property name="dist.dir"  value="dist"/>
-<!--
   <property name="junit.dir" value="/var/lib/jenkins/workspace/Helloworld/Reports"/>
--->
+<!--
   <property name="junit.dir" value="junit-results"/>
   <property name="dest.dir" value="/var/lib/jenkins/workspace/Helloworld/Reports"/>
+-->
   <property name="junit.jar" location="/usr/local/share/java/classes/junit.jar"/>
   <property name="test.class" value="TestHello"/>
 
@@ -44,9 +44,6 @@
     <fileset dir="${dest.dir}"/>
   </touch>
 -->
-  <copy todir="${dest.dir}" overwrite="false">
-    <fileset dir="${junit.dir}" excludes="**/*.xml"/>
-  </copy>
  
   <target name="dist" depends="build" description="generate the distribution" >
     <jar jarfile="${dist.dir}/hello.jar" basedir="${build.dir}">
@@ -67,6 +64,13 @@
     <java jar="${dist.dir}/hello.jar" fork="true" />
   </target>
 
+<!--
+  <target name="copy" depends="run"  >
+    <copy todir="${dest.dir}" overwrite="false" >
+      <fileset dir="${junit.dir}" excludes="**/*.xml"/>
+    </copy>
+  </target>
+-->
   <target name="clean" description="clean up" >
     <delete dir="${build.dir}"/>
     <delete dir="${dist.dir}"/>
