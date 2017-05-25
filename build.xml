@@ -1,10 +1,9 @@
 <project name="hello" default="dist" basedir=".">
-  <description>KSB's ant 'Hello, world' build.xml example</description>
 
   <property name="src.dir"   value="."/>
   <property name="build.dir" value="build"/>
   <property name="dist.dir"  value="dist"/>
-  <property name="junit.dir" value="junit-results"/>
+  <property name="junit.dir" value="/var/lib/jenkins/workspace/Helloworld/Reports"/>
 
   <property name="junit.jar" location="/usr/local/share/java/classes/junit.jar"/>
   <property name="test.class" value="TestHello"/>
